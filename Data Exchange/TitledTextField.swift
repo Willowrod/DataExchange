@@ -94,7 +94,7 @@ struct TitledTextEditor: View {
             if let title {
                 SecondaryText(title, colour: .white)
             }
-            TextEditor(text: value).foregroundColor(.black).textFieldStyle(CustomTextFieldStyle()).disableAutocorrection(true).frame(maxWidth: .infinity, maxHeight: .infinity).cornerRadius(10).overlay(
+            TextEditor(text: value).foregroundColor(.white).textFieldStyle(CustomTextFieldStyle()).disableAutocorrection(true).frame(maxWidth: .infinity, maxHeight: .infinity).cornerRadius(10).overlay(
                 RoundedRectangle(cornerRadius: 10)
                     .stroke(scoreColour(error: error), lineWidth: 1)
             )

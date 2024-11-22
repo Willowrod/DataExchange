@@ -18,11 +18,19 @@ struct ContentView: View {
         }
         .padding()
             HStack {
-                MainButton(text: "Kotlin -> Swift"){
+                MainButton(text: "Kotlin Data Class -> Swift Codable"){
                     kToS()
                 }
-                MainButton(text: "Swift -> Kotlin"){
+                MainButton(text: "Swift Codable -> Kotlin Data Class"){
                     sToK()
+                }
+            }
+            HStack {
+                MainButton(text: "Jetpack Compose -> SwiftUI"){
+                    jCTosUI()
+                }
+                MainButton(text: "SwiftUI -> Jetpack Compose"){
+                    SuiTojC()
                 }
             }
         }.padding()
@@ -43,6 +51,35 @@ struct ContentView: View {
     }
     
     func sToK() {
+        toText = text.replacingOccurrences(of: "struct", with: "data class")
+            .replacingOccurrences(of: ": Codable {", with: "(")
+            .replacingOccurrences(of: "}", with: ")")
+            .replacingOccurrences(of: "let", with: "val")
+            .replacingOccurrences(of: "[", with: "ArrayList<")
+            .replacingOccurrences(of: "]", with: ">")
+            .replacingOccurrences(of: "Int32", with: "Int")
+            .replacingOccurrences(of: "Int64", with: "Long")
+            .replacingOccurrences(of: "Bool", with: "Boolean")
+            .replacingOccurrences(of: "\n", with: ",\n")
+            .replacingOccurrences(of: "(,", with: "(")
+            .replacingOccurrences(of: ",\n,\n", with: "\n\n")
+    }
+    
+    func jCTosUI() {
+        toText = text.replacingOccurrences(of: "@Composable\nfun", with: "struct")
+            .replacingOccurrences(of: "Box", with: "ZStack")
+            .replacingOccurrences(of: "Column", with: "VStack")
+            .replacingOccurrences(of: "Row", with: "HStack")
+            .replacingOccurrences(of: "Text(\"", with: "Text(text: \"")
+            .replacingOccurrences(of: "null", with: "nil")
+            .replacingOccurrences(of: ".fillMaxSize()", with: ".frame(maxWidth: .infinity, maxHeight: .infinity)")
+            .replacingOccurrences(of: "Int", with: "Int32")
+            .replacingOccurrences(of: "Long", with: "Int64")
+            .replacingOccurrences(of: "Boolean", with: "Bool")
+            .replacingOccurrences(of: ",\n", with: "\n")
+    }
+    
+    func SuiTojC() {
         toText = text.replacingOccurrences(of: "struct", with: "data class")
             .replacingOccurrences(of: ": Codable {", with: "(")
             .replacingOccurrences(of: "}", with: ")")
